@@ -1,0 +1,1020 @@
+:root {
+  color: #5f7f94;
+  font-family: "Lora", Georgia, "Times New Roman", serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+button {
+  font: inherit;
+}
+
+body {
+  min-height: 100vh;
+  background: #dce5e6;
+}
+
+.page-shell {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.mobile-canvas {
+  isolation: isolate;
+  position: relative;
+  width: min(100%, 430px);
+  height: min(900px, calc(100svh - 32px));
+  min-height: 690px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto auto minmax(230px, 1fr) auto auto;
+  justify-items: center;
+  padding: clamp(22px, 4vh, 40px) 24px 25px;
+  background-color: #fffdf4;
+  background-image:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.82) 0 2px, transparent 3px),
+    radial-gradient(circle at 78% 56%, rgba(219, 203, 163, 0.09) 0 1px, transparent 2px),
+    repeating-linear-gradient(7deg, rgba(152, 126, 83, 0.025) 0 1px, transparent 1px 5px);
+  box-shadow: 0 24px 70px rgba(39, 62, 69, 0.2);
+}
+
+.mobile-canvas::before,
+.mobile-canvas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.mobile-canvas::before {
+  opacity: 0.6;
+  background-image:
+    radial-gradient(circle, #c6a342 0 1.2px, transparent 1.7px),
+    radial-gradient(circle, #d5b756 0 0.9px, transparent 1.5px);
+  background-size: 23px 29px, 31px 37px;
+  mask-image:
+    radial-gradient(ellipse at 88% 7%, black 0 12%, transparent 28%),
+    radial-gradient(ellipse at 5% 52%, black 0 9%, transparent 24%),
+    radial-gradient(ellipse at 91% 67%, black 0 10%, transparent 25%),
+    radial-gradient(ellipse at 9% 94%, black 0 8%, transparent 22%);
+}
+
+.mobile-canvas::after {
+  background:
+    radial-gradient(ellipse 72% 25% at 2% 7%, rgba(185, 220, 241, 0.62), transparent 70%),
+    radial-gradient(ellipse 38% 26% at 100% 35%, rgba(170, 215, 242, 0.52), transparent 73%),
+    radial-gradient(ellipse 55% 22% at 48% 100%, rgba(197, 224, 236, 0.2), transparent 75%);
+  filter: blur(3px);
+}
+
+.blue-wash {
+  position: absolute;
+  z-index: -1;
+  border-radius: 48% 52% 60% 40%;
+  background: rgba(181, 220, 242, 0.35);
+  filter: blur(16px);
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
+
+.blue-wash-left {
+  width: 190px;
+  height: 290px;
+  left: -112px;
+  top: 126px;
+}
+
+.blue-wash-right {
+  width: 180px;
+  height: 250px;
+  right: -115px;
+  top: 300px;
+}
+
+.hero-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ueh-logo {
+  display: block;
+  width: clamp(155px, 45vw, 196px);
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.school-name {
+  margin: 7px -12px 0;
+  color: #6e8ca0;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(16px, 4.6vw, 20px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+
+.graduation-title {
+  align-self: end;
+  margin: clamp(27px, 5vh, 50px) 0 0;
+  color: #688aa2;
+  font-family: "Dancing Script", "Segoe Script", cursive;
+  font-size: clamp(60px, 18vw, 82px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.8);
+  transform: rotate(-2deg);
+}
+
+.envelope-button {
+  align-self: center;
+  width: min(104%, 390px);
+  margin: 2px -8px 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  filter: drop-shadow(0 12px 12px rgba(107, 81, 47, 0.13));
+  transition: transform 240ms ease, filter 240ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.envelope-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.envelope-button:hover {
+  transform: translateY(-5px) rotate(-1deg);
+  filter: drop-shadow(0 18px 14px rgba(107, 81, 47, 0.18));
+}
+
+.envelope-button:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+.envelope-button:focus-visible,
+.open-instruction:focus-visible,
+.close-button:focus-visible {
+  outline: 3px solid rgba(22, 105, 117, 0.42);
+  outline-offset: 4px;
+}
+
+.open-instruction {
+  position: relative;
+  margin: 0;
+  padding: 3px 0 5px;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: #6789a0;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(13px, 3.7vw, 16px);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.signature {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: clamp(25px, 5vh, 54px) 4px 0 0;
+  color: #52788f;
+  line-height: 1;
+}
+
+.signature span {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 9vw, 41px);
+  font-weight: 700;
+  font-style: italic;
+}
+
+.signature em {
+  margin-top: 6px;
+  font-family: "Dancing Script", "Segoe Script", cursive;
+  font-size: clamp(27px, 8vw, 36px);
+  font-style: normal;
+  font-weight: 500;
+  transform: rotate(-4deg);
+}
+
+.invitation-overlay {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 26px;
+  background: rgba(55, 76, 83, 0.32);
+  backdrop-filter: blur(5px);
+  animation: fade-in 260ms ease both;
+}
+
+.mobile-canvas--page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  background-color: #f2f3f4;
+}
+
+.mobile-canvas--rsvp {
+  display: block;
+  width: min(100%, 500px);
+  overflow-y: auto;
+  padding: 0;
+  background: linear-gradient(160deg, #fdf6e3, #eaf4fb);
+}
+
+.rsvp-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding: 22px 22px 20px;
+  text-align: center;
+  font-family: "Baloo 2", "Segoe UI", sans-serif;
+}
+
+.rsvp-cursive-title {
+  margin: 3px 0 18px;
+  font-family: "Dancing Script", "Segoe Script", cursive;
+  font-size: 36px;
+  font-weight: 700;
+  color: #6f93b0;
+}
+
+.rsvp-card {
+  background: #fff;
+  border: 3px solid #bfe0f2;
+  border-radius: 17px;
+  padding: 20px 18px 16px;
+  text-align: left;
+  box-shadow: 0 14px 30px rgba(80, 120, 150, 0.16);
+}
+
+.rsvp-heading {
+  margin: 0 0 16px;
+  font-size: 19px;
+  font-weight: 800;
+  color: #16222b;
+}
+
+.rsvp-label {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #16222b;
+}
+
+.rsvp-input {
+  display: block;
+  width: 100%;
+  margin: 0 0 16px;
+  padding: 9px 11px;
+  border: 1px solid #c9d4da;
+  border-radius: 8px;
+  background: #fff;
+  color: #16222b;
+  font: inherit;
+  font-size: 13.5px;
+}
+
+.rsvp-input:focus-visible {
+  outline: 2px solid #7fc3e6;
+  outline-offset: 1px;
+}
+
+.rsvp-question {
+  margin: 0 0 10px;
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: #16222b;
+}
+
+.rsvp-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 0 16px;
+}
+
+.rsvp-option {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #e9e9e9;
+  color: #16222b;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.rsvp-option--selected {
+  background: #dcecf7;
+  border-color: #7fc3e6;
+  font-weight: 700;
+}
+
+.rsvp-submit {
+  display: block;
+  width: 100%;
+  margin: 3px 0 0;
+  padding: 12px;
+  border: 0;
+  border-radius: 999px;
+  background: #7fc3e6;
+  color: #16222b;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 150ms ease, opacity 150ms ease;
+}
+
+.rsvp-submit:hover {
+  background: #69b3da;
+}
+
+.rsvp-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.rsvp-disclaimer {
+  margin: 10px 0 0;
+  font-size: 10.5px;
+  line-height: 1.35;
+  text-align: center;
+  color: #6c7a82;
+}
+
+.rsvp-thanks-note {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #16222b;
+}
+
+.rsvp-signature {
+  margin: 18px 4px 0 0;
+  text-align: right;
+  color: #52788f;
+  line-height: 1.1;
+}
+
+.rsvp-signature-name {
+  display: block;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.rsvp-signature-love {
+  display: block;
+  margin-top: 3px;
+  font-family: "Dancing Script", "Segoe Script", cursive;
+  font-size: 19px;
+}
+
+.invitation-page {
+  position: relative;
+  overflow: hidden;
+  padding: 14px 16px;
+  color: #16222b;
+  font-family: "Baloo 2", "Segoe UI", sans-serif;
+  text-align: center;
+  animation: card-in 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.invitation-page-back {
+  position: absolute;
+  z-index: 8;
+  top: 8px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.65);
+  color: #668294;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.invitation-page-rule {
+  width: 100%;
+  height: 3px;
+  margin-bottom: 10px;
+  background: #7fc3e6;
+  box-shadow: 0 5px 0 #7fc3e6;
+}
+
+.invitation-page-rule--bottom {
+  margin: 10px 0 0;
+}
+
+.invitation-eyebrow {
+  margin: 0 auto 8px;
+  max-width: 230px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  color: #16222b;
+}
+
+.invitation-banner {
+  position: relative;
+  display: inline-block;
+  margin: 4px auto 12px;
+}
+
+.invitation-banner-script {
+  position: absolute;
+  z-index: 2;
+  top: -9px;
+  left: -4px;
+  font-family: "Permanent Marker", "Segoe Script", cursive;
+  font-size: 18px;
+  line-height: 1;
+  color: #16222b;
+  transform: rotate(-8deg);
+}
+
+.invitation-banner-tape {
+  padding: 6px 18px 8px;
+  background: #ddc99a;
+  box-shadow: 0 5px 10px rgba(139, 111, 55, 0.2);
+  transform: rotate(-1.5deg);
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 30%,
+    89% 39%,
+    96% 47%,
+    100% 55%,
+    100% 100%,
+    0% 100%,
+    0% 66%,
+    11% 58%,
+    4% 50%,
+    0% 43%,
+    0% 0%
+  );
+}
+
+.invitation-banner-bold {
+  font-family: "Baloo 2", "Segoe UI", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: #1b1b1b;
+}
+
+.invitation-hero {
+  position: relative;
+  width: 100%;
+  margin: 0 0 32%;
+}
+
+.invitation-hero-banner-frame {
+  padding: 3%;
+  background: #fdfbf3;
+  box-shadow: 0 8px 18px rgba(49, 76, 89, 0.18);
+}
+
+.invitation-hero-banner {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: linear-gradient(160deg, #d7e6ec, #b7cfdb);
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    70% 100%,
+    67% 95%,
+    64% 100%,
+    40% 100%,
+    37% 96%,
+    34% 100%,
+    0% 100%,
+    0% 75%,
+    5% 71%,
+    0% 67%,
+    0% 40%,
+    4% 36%,
+    0% 32%,
+    0% 0%
+  );
+}
+
+.invitation-hero-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 12%;
+}
+
+.invitation-hero-banner--empty {
+  display: grid;
+  place-items: center;
+}
+
+.invitation-hero-banner--empty img {
+  display: none;
+}
+
+.invitation-hero-banner--empty::after {
+  content: "Ảnh khuôn viên sẽ được thêm sau";
+  max-width: 200px;
+  font-size: 11px;
+  color: #557486;
+}
+
+.invitation-hero-portrait {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 22%;
+  width: 58%;
+  aspect-ratio: 5 / 8;
+  transform: translateX(-50%);
+}
+
+.invitation-hero-portrait-frame {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.invitation-hero-crown {
+  position: absolute;
+  z-index: 3;
+  top: 20%;
+  left: 34%;
+  width: 15%;
+  aspect-ratio: 1;
+  color: #7fc3e6;
+  transform: translateX(-50%) rotate(-20deg);
+}
+
+.invitation-hero-portrait-frame--empty {
+  border-radius: 4px;
+  background: linear-gradient(160deg, #e7ccb3, #cfa877);
+  box-shadow: 0 12px 20px rgba(49, 57, 57, 0.22);
+}
+
+.invitation-hero-portrait-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  mask-image: linear-gradient(to bottom, transparent, #000 14%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%);
+}
+
+.invitation-hero-portrait-frame--empty {
+  display: grid;
+  place-items: center;
+}
+
+.invitation-hero-portrait-frame--empty img {
+  display: none;
+}
+
+.invitation-hero-portrait-frame--empty::after {
+  content: "Ảnh sẽ được thêm sau";
+  max-width: 120px;
+  font-size: 11px;
+  color: #6b4a24;
+}
+
+.invitation-tag {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: max-content;
+  max-width: 150px;
+  margin: 0;
+  padding: 7px 12px;
+  font-size: 9.5px;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.invitation-tag--intro {
+  left: -12px;
+  top: 18%;
+  background: #ecdfc0;
+  color: #16222b;
+  transform: rotate(-6deg);
+}
+
+.invitation-tag--intro::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -4px -2px;
+  background: #ddc99a;
+  clip-path: polygon(
+    0% 0%,
+    32% 0%,
+    38% 12%,
+    44% 0%,
+    100% 0%,
+    100% 100%,
+    62% 100%,
+    56% 88%,
+    50% 100%,
+    0% 100%
+  );
+}
+
+.invitation-tag--invite {
+  right: -12px;
+  top: 88%;
+  background: #fdfcf6;
+  box-shadow: 0 8px 16px rgba(49, 76, 89, 0.15);
+  color: #16222b;
+  transform: rotate(4deg);
+}
+
+.invitation-tag--invite::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  background: #e4dfd0;
+  clip-path: polygon(100% 0%, 0% 0%, 100% 100%);
+}
+
+.invitation-tag--intro em {
+  color: #6b4423;
+}
+
+.invitation-tag--invite em {
+  color: #1f3a52;
+}
+
+.invitation-tag em {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.invitation-tag-icon {
+  position: absolute;
+  top: -8px;
+  left: -6px;
+  width: 18px;
+  height: 18px;
+  color: #7fc3e6;
+  transform: rotate(-8deg);
+}
+
+.invitation-tag--invite .invitation-tag-icon {
+  transform: rotate(6deg);
+}
+
+.invitation-doodle {
+  position: absolute;
+  z-index: 1;
+  color: #9cc5e0;
+  pointer-events: none;
+}
+
+.invitation-doodle--heart {
+  top: -8px;
+  left: 2%;
+  width: 22px;
+  height: 22px;
+  transform: rotate(-12deg);
+}
+
+.invitation-doodle--star-big {
+  left: -6px;
+  bottom: -5%;
+  width: 32px;
+  height: 32px;
+  transform: rotate(6deg);
+}
+
+.invitation-doodle--star-small {
+  left: 24%;
+  bottom: -9%;
+  width: 17px;
+  height: 17px;
+  transform: rotate(-10deg);
+}
+
+.invitation-details {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  margin: 0 0 14px;
+  text-align: left;
+}
+
+.invitation-detail {
+  flex: 1;
+  max-width: 150px;
+}
+
+.invitation-details-divider {
+  align-self: stretch;
+  width: 1px;
+  background: rgba(22, 34, 43, 0.25);
+}
+
+.invitation-detail-label {
+  margin: 0 0 2px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a6b32;
+}
+
+.invitation-detail-value {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #16222b;
+}
+
+.invitation-detail-note {
+  margin: 3px 0 0;
+  font-size: 9.5px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: #4c6e83;
+}
+
+.invitation-meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 4px 0 0;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #16222b;
+}
+
+.invitation-meta svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: #8a6b32;
+}
+
+.invitation-rsvp {
+  position: relative;
+  width: 100%;
+  padding: 2px 20px;
+}
+
+.invitation-rsvp-title {
+  display: block;
+  margin: 0 auto 3px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #16222b;
+  cursor: pointer;
+}
+
+.invitation-rsvp-note {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #16222b;
+}
+
+.invitation-doodle--arrow-heart {
+  top: -8px;
+  left: -6px;
+  width: 28px;
+  height: 28px;
+  transform: rotate(-12deg);
+}
+
+.invitation-doodle--sparkle {
+  top: -3px;
+  right: 10px;
+  width: 16px;
+  height: 16px;
+  transform: rotate(8deg);
+}
+
+.invitation-doodle--star-corner {
+  right: -6px;
+  bottom: -8px;
+  width: 18px;
+  height: 18px;
+  transform: rotate(14deg);
+}
+
+.name-gate {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  padding: 40px 26px 32px;
+  border: 1px solid rgba(178, 144, 79, 0.45);
+  background: #fffdf4;
+  box-shadow: 0 24px 65px rgba(49, 57, 57, 0.28);
+  color: #58798e;
+  text-align: center;
+  animation: card-in 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.name-gate-kicker {
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.name-gate h2 {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 26px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.name-gate-hint {
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.name-gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.name-gate-input {
+  padding: 12px 14px;
+  border: 1px solid rgba(107, 137, 160, 0.4);
+  border-radius: 6px;
+  background: #fff;
+  color: #3f5b6d;
+  font: inherit;
+  font-size: 15px;
+  text-align: center;
+}
+
+.name-gate-input:focus-visible {
+  outline: 2px solid rgba(22, 105, 117, 0.42);
+  outline-offset: 2px;
+}
+
+.name-gate-submit {
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 6px;
+  background: #6789a0;
+  color: #fff;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.name-gate-submit:hover {
+  background: #56768c;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  padding: 0 0 4px;
+  border: 0;
+  background: transparent;
+  color: #668294;
+  font-size: 31px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(0.94) rotate(-1deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-shell {
+    display: block;
+    padding: 0;
+  }
+
+  .mobile-canvas {
+    width: 100%;
+    height: 100svh;
+    min-height: 650px;
+    padding-inline: 21px;
+    box-shadow: none;
+  }
+
+  .mobile-canvas--rsvp {
+    padding-inline: 0;
+  }
+}
+
+@media (max-height: 760px) and (min-width: 481px) {
+  .mobile-canvas {
+    min-height: 660px;
+    padding-block: 20px;
+  }
+
+  .graduation-title {
+    margin-top: 20px;
+  }
+
+  .signature {
+    padding-top: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
