@@ -308,6 +308,10 @@ const InvitationPage = ({ guestName, onBack, onRsvp }) => (
           <AlarmIcon />
           10:30 - 11:30
         </p>
+        <p className="invitation-meta">
+          <PhoneIcon />
+          0913 379 302
+        </p>
       </div>
       <div className="invitation-details-divider" aria-hidden="true" />
       <div className="invitation-detail">
@@ -317,11 +321,16 @@ const InvitationPage = ({ guestName, onBack, onRsvp }) => (
           <br />
           59C Nguyễn Đình Chiểu, Quận 3
         </p>
-        {/* <p className="invitation-detail-note">*Xem bản đồ chỉ đường</p> */}
-        <p className="invitation-meta">
-          <PhoneIcon />
-          0913 379 302
-        </p>
+        <a
+          className="invitation-detail-note"
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+            "UEH cơ sở A, 59C Nguyễn Đình Chiểu, Quận 3, Hồ Chí Minh",
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Xem bản đồ chỉ đường
+        </a>
       </div>
     </div>
 

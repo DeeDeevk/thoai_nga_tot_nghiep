@@ -791,12 +791,14 @@ body {
 }
 
 .invitation-detail-note {
+  display: block;
   margin: 3px 0 0;
   font-size: 9.5px;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 2px;
   color: #4c6e83;
+  cursor: pointer;
 }
 
 .invitation-meta {
